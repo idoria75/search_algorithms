@@ -1,0 +1,6 @@
+Estado: Beta atual e lista de nós ativos.
+Transição: Ativar um novo nó.
+Restrição: Valor de Beta e ĺista de prioridades (sempre devemos ligar o próximo possível da lista de prioridades).
+
+Criar nós e atribuir a ele seus filhos (não é uma árvore)
+Implementar algoritmo de busca em profundidade
