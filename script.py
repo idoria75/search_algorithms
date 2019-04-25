@@ -6,6 +6,10 @@ class Node:
 
     def print(self):
         print(self.custo)
+        print(self.vizinhos[0].nome)
+        print(self.vizinhos[1].nome)
+        print(self.vizinhos[2].nome)
+        # print(self.vizinhos[0].custo)
 
 
 NodoA = Node("A", 5)
@@ -21,8 +25,31 @@ NodoN = Node("N", 13)
 
 prioridades = ["A", "C", "G", "L", "O", "P", "F", "B", "M", "N"]
 
-print(NodoA.vizinhos)
-NodoA.vizinhos.append(NodoC)
 NodoA.vizinhos.append(NodoB)
-print(NodoA.vizinhos[0].nome)
-print(NodoA.vizinhos[0].custo)
+NodoA.vizinhos.append(NodoC)
+
+# NodoB.vizinhos.append(NodoA)
+NodoB.vizinhos.append(NodoP)
+# NodoB.vizinhos.append(NodoG)
+
+# NodoP.vizinhos.append(NodoB)
+
+# NodoC.vizinhos.append(NodoA)
+# NodoC.vizinhos.append(NodoO)
+# NodoC.vizinhos.append(NodoF)
+
+# NodoO.vizinhos.append(NodoC)
+# NodoO.vizinhos.append(NodoG)
+
+# NodoG.vizinhos.append(NodoB)
+# NodoG.vizinhos.append(NodoN)
+# NodoG.vizinhos.append(NodoL)
+# NodoG.vizinhos.append(NodoO)
+
+# NodoF.vizinhos.append(NodoC)
+# NodoF.vizinhos.append(NodoM)
+
+# Falta:
+# NodoN, NodoL, NodoM
+
+NodoA.print()
