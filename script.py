@@ -1,4 +1,5 @@
 class Node:
+    # Variaveis com "_" sao privadas
     def __init__(self, nome="", custo=0):
         self._nome = nome
         self._custo = custo
@@ -7,12 +8,38 @@ class Node:
     def print(self):
         print(self._custo)
         print(self._vizinhos[0]._nome)
-        # print(self._vizinhos[1]._nome)
-        # print(self._vizinhos[2]._nome)
-        # print(self.vizinhos[0]._custo)
 
     def appendVizinho(self, novoVizinho):
         self._vizinhos.append(novoVizinho)
+
+    def getCusto(self):
+        return self._custo
+
+    def getNome(self):
+        return self._nome
+
+
+prioridades = ['A', "C", "G", "L", "O", "P", "F", "B", "M", "N"]
+custoAtual = 0
+# Adiciona nome do nodo quando a linha for energizada
+estados = []
+
+# Energiza o nodo se não energizado antes
+
+
+def energizar(nodo):
+    global custoAtual, estados
+    print("Nome do novo nodo:")
+    print(nodo.getNome())
+    print("Novo nodo em estados:")
+    print(nodo.getNome() in estados)
+    if(not(nodo.getNome() in estados)):
+        estados = estados + [(nodo.getNome())]
+        custoAtual = nodo._custo + custoAtual
+    print("Custo atual:")
+    print(custoAtual)
+    print("Estados:")
+    print(estados)
 
 
 NodoA = Node("A", 5)
@@ -25,8 +52,6 @@ NodoF = Node("F", 50)
 NodoB = Node("B", 5)
 NodoM = Node("M", 13)
 NodoN = Node("N", 13)
-
-prioridades = ["A", "C", "G", "L", "O", "P", "F", "B", "M", "N"]
 
 NodoA.appendVizinho(NodoB)
 NodoA.appendVizinho(NodoC)
@@ -57,6 +82,13 @@ NodoN.appendVizinho(NodoG)
 NodoL.appendVizinho(NodoG)
 
 NodoM.appendVizinho(NodoF)
+
+energizar(NodoA)
+energizar(NodoB)
+energizar(NodoC)
+energizar(NodoG)
+energizar(NodoL)
+energizar(NodoP)
 
 # print("NodoA:")
 # NodoA.print()
