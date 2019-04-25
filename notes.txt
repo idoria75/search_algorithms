@@ -4,3 +4,7 @@ Restrição: Valor de Beta e ĺista de prioridades (sempre devemos ligar o próx
 
 Criar nós e atribuir a ele seus filhos (não é uma árvore)
 Implementar algoritmo de busca em profundidade
+
+########
+
+Como percorrer a lista de prioridades verificando se é possível energizar o próximo da lista

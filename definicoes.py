@@ -19,10 +19,10 @@ class Node:
         return self._nome
 
 
-prioridades = ['A', "C", "G", "L", "O", "P", "F", "B", "M", "N"]
-custoAtual = 0
+# prioridades = ["A", "C", "G", "L", "O", "P", "F", "B", "M", "N"]
+# custoAtual = 0
 # Adiciona nome do nodo quando a linha for energizada
-estados = []
+# estados = []
 
 # Energiza o nodo se não energizado antes
 

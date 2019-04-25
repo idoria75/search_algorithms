@@ -1,8 +1,10 @@
-from definicoes import *
+from solver import *
 
-energizar(NodoA)
-energizar(NodoB)
-energizar(NodoC)
-energizar(NodoG)
-energizar(NodoL)
-energizar(NodoP)
+solver(prioridades, 70)
+
+# energizar(NodoA)
+# energizar(NodoB)
+# energizar(NodoC)
+# energizar(NodoG)
+# energizar(NodoL)
+# energizar(NodoP)
