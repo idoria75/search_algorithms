@@ -83,13 +83,6 @@ NodoL.appendVizinho(NodoG)
 
 NodoM.appendVizinho(NodoF)
 
-energizar(NodoA)
-energizar(NodoB)
-energizar(NodoC)
-energizar(NodoG)
-energizar(NodoL)
-energizar(NodoP)
-
 # print("NodoA:")
 # NodoA.print()
 # print("NodoB:")
