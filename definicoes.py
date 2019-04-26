@@ -21,8 +21,11 @@ class Node:
     def getVizinhos(self):
         return self._vizinhos
 
+# Qual a funcao disso?
+# Reprojetar!
 
-def getNomeNodosLista(listaDeNodos):
+
+def getNomeVizinhos(listaDeNodos):
     nomes = []
     print(listaDeNodos)
     for i in listaDeNodos:
@@ -31,13 +34,8 @@ def getNomeNodosLista(listaDeNodos):
         nomes = nomes + [i.getNome()]
     return nomes
 
-
-# prioridades = ["A", "C", "G", "L", "O", "P", "F", "B", "M", "N"]
-# custoAtual = 0
-# Adiciona nome do nodo quando a linha for energizada
-# estados = []
-
 # Energiza o nodo se não energizado antes
+
 
 def energizar(nodo, custoAtual, estadoAtual, listaDeVizinhosDisponiveis):
     print("Nome do novo nodo:")
@@ -45,20 +43,24 @@ def energizar(nodo, custoAtual, estadoAtual, listaDeVizinhosDisponiveis):
     print("Novo nodo em estados:")
     print(nodo.getNome() in estadoAtual)
     print("PRINT NODOS:")
-    print(getNomeNodosLista(estadoAtual))
+    print(getNomeVizinhos(estadoAtual))
     if(not(nodo.getNome() in estadoAtual)):
         estadoAtual = estadoAtual + [(nodo.getNome())]
         custoAtual = nodo.getCusto() + custoAtual
-        print("Lista anterior:")
+        print("Lista Vizinhos anterior:")
         print(listaDeVizinhosDisponiveis)
         listaDeVizinhosDisponiveis = listaDeVizinhosDisponiveis + \
-            getNomeNodosLista(listaDeVizinhosDisponiveis)
-        print("Lista atual:")
+            getNomeVizinhos(nodo)
+
+        print("Lista Vizinhos atual:")
         print(listaDeVizinhosDisponiveis)
-    print("Custo atual:")
-    print(custoAtual)
-    print("Estados:")
-    print(getNomeNodosLista(estadoAtual))
+
+        print("Custo atual:")
+        print(custoAtual)
+        print("Estados:")
+        print(estadoAtual)
+
+    return estadoAtual
 
 
 NodoA = Node("A", 5)
@@ -107,23 +109,4 @@ prioridades = [NodoA, NodoC, NodoG, NodoL,
 custoAtual = 0
 custoMaximo = 70
 vizinhosDisponiveis = []
-# print("NodoA:")
-# NodoA.print()
-# print("NodoB:")
-# NodoB.print()
-# print("NodoC:")
-# NodoC.print()
-# print("NodoP:")
-# NodoP.print()
-# print("NodoG:")
-# NodoG.print()
-# print("NodoO:")
-# NodoO.print()
-# print("NodoN:")
-# NodoN.print()
-# print("NodoM:")
-# NodoM.print()
-# print("NodoL:")
-# NodoL.print()
-# print("NodoF:")
-# NodoF.print()
+energizados = []

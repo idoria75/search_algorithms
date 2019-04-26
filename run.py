@@ -2,7 +2,10 @@ from solver import *
 
 # solver(prioridades, 70)
 
-energizar(NodoA, custoAtual, prioridades, vizinhosDisponiveis)
+energizados = energizar(NodoA, custoAtual, energizados, vizinhosDisponiveis)
+energizados = energizar(NodoA, custoAtual, energizados, vizinhosDisponiveis)
+energizados = energizar(NodoB, custoAtual, energizados, vizinhosDisponiveis)
+
 # energizar(NodoB)
 # energizar(NodoC)
 # energizar(NodoG)
