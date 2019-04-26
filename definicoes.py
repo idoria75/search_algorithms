@@ -18,6 +18,19 @@ class Node:
     def getNome(self):
         return self._nome
 
+    def getVizinhos(self):
+        return self._vizinhos
+
+
+def getNomeNodosLista(listaDeNodos):
+    nomes = []
+    print(listaDeNodos)
+    for i in listaDeNodos:
+        print("GET_NOME()")
+        print(i.getNome())
+        nomes = nomes + [i.getNome()]
+    return nomes
+
 
 # prioridades = ["A", "C", "G", "L", "O", "P", "F", "B", "M", "N"]
 # custoAtual = 0
@@ -26,20 +39,26 @@ class Node:
 
 # Energiza o nodo se não energizado antes
 
-
-def energizar(nodo):
-    global custoAtual, estados
+def energizar(nodo, custoAtual, estadoAtual, listaDeVizinhosDisponiveis):
     print("Nome do novo nodo:")
     print(nodo.getNome())
     print("Novo nodo em estados:")
-    print(nodo.getNome() in estados)
-    if(not(nodo.getNome() in estados)):
-        estados = estados + [(nodo.getNome())]
-        custoAtual = nodo._custo + custoAtual
+    print(nodo.getNome() in estadoAtual)
+    print("PRINT NODOS:")
+    print(getNomeNodosLista(estadoAtual))
+    if(not(nodo.getNome() in estadoAtual)):
+        estadoAtual = estadoAtual + [(nodo.getNome())]
+        custoAtual = nodo.getCusto() + custoAtual
+        print("Lista anterior:")
+        print(listaDeVizinhosDisponiveis)
+        listaDeVizinhosDisponiveis = listaDeVizinhosDisponiveis + \
+            getNomeNodosLista(listaDeVizinhosDisponiveis)
+        print("Lista atual:")
+        print(listaDeVizinhosDisponiveis)
     print("Custo atual:")
     print(custoAtual)
     print("Estados:")
-    print(estados)
+    print(getNomeNodosLista(estadoAtual))
 
 
 NodoA = Node("A", 5)
@@ -83,6 +102,11 @@ NodoL.appendVizinho(NodoG)
 
 NodoM.appendVizinho(NodoF)
 
+prioridades = [NodoA, NodoC, NodoG, NodoL,
+               NodoO, NodoP, NodoF, NodoB, NodoM, NodoN]
+custoAtual = 0
+custoMaximo = 70
+vizinhosDisponiveis = []
 # print("NodoA:")
 # NodoA.print()
 # print("NodoB:")
