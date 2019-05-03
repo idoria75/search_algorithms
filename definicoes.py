@@ -42,18 +42,18 @@ def energizar(nodo, custoAtual, estadoAtual, listaDeVizinhosDisponiveis):
     print(nodo.getNome())
     print("Novo nodo em estados:")
     print(nodo.getNome() in estadoAtual)
-    print("PRINT NODOS:")
-    print(getNomeVizinhos(estadoAtual))
+    # print("PRINT NODOS:")
+    # print(getNomeVizinhos(estadoAtual))
     if(not(nodo.getNome() in estadoAtual)):
         estadoAtual = estadoAtual + [(nodo.getNome())]
         custoAtual = nodo.getCusto() + custoAtual
-        print("Lista Vizinhos anterior:")
-        print(listaDeVizinhosDisponiveis)
+        # print("Lista Vizinhos anterior:")
+        # print(listaDeVizinhosDisponiveis)
         listaDeVizinhosDisponiveis = listaDeVizinhosDisponiveis + \
             getNomeVizinhos(nodo)
 
-        print("Lista Vizinhos atual:")
-        print(listaDeVizinhosDisponiveis)
+        # print("Lista Vizinhos atual:")
+        # print(listaDeVizinhosDisponiveis)
 
         print("Custo atual:")
         print(custoAtual)
