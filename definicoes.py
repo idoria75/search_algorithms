@@ -21,18 +21,24 @@ class Node:
     def getVizinhos(self):
         return self._vizinhos
 
+    def getNomeVizinhos(self):
+        nomes = []
+        for i in self._vizinhos:
+            nomes = nomes+[i.getNome()]
+        return nomes
+
 # Qual a funcao disso?
 # Reprojetar!
 
-
-def getNomeVizinhos(listaDeNodos):
-    nomes = []
-    print(listaDeNodos)
-    for i in listaDeNodos:
-        print("GET_NOME()")
-        print(i.getNome())
-        nomes = nomes + [i.getNome()]
-    return nomes
+# Errado:
+# def getNomeVizinhos(listaDeNodos):
+#     nomes = []
+#     print(listaDeNodos)
+#     for i in listaDeNodos:
+#         print("GET_NOME()")
+#         print(i.getNome())
+#         nomes = nomes + [i.getNome()]
+#     return nomes
 
 # Energiza o nodo se não energizado antes
 
@@ -47,13 +53,16 @@ def energizar(nodo, custoAtual, estadoAtual, listaDeVizinhosDisponiveis):
     if(not(nodo.getNome() in estadoAtual)):
         estadoAtual = estadoAtual + [(nodo.getNome())]
         custoAtual = nodo.getCusto() + custoAtual
-        # print("Lista Vizinhos anterior:")
-        # print(listaDeVizinhosDisponiveis)
-        listaDeVizinhosDisponiveis = listaDeVizinhosDisponiveis + \
-            getNomeVizinhos(nodo)
+        print("Lista Vizinhos anterior:")
+        print(listaDeVizinhosDisponiveis)
 
-        # print("Lista Vizinhos atual:")
-        # print(listaDeVizinhosDisponiveis)
+        listaDeNovosVizinhos = nodo.getNomeVizinhos()
+        for i in listaDeNovosVizinhos:
+            if(not(i in listaDeVizinhosDisponiveis)):
+                listaDeVizinhosDisponiveis = listaDeVizinhosDisponiveis + [i]
+
+        print("Lista Vizinhos atual:")
+        print(listaDeVizinhosDisponiveis)
 
         print("Custo atual:")
         print(custoAtual)
