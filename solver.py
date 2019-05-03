@@ -1,25 +1,19 @@
 from definicoes import *
 
+custoAtual = 0
+custoMaximo = 70
+vizinhosDisponiveis = ['A']
+energizados = []
 
-def solver(listaDePrioridades, beta):
+
+def solver(listaDePrioridades, beta):  # , vizinhosDisponiveis):
     global vizinhosDisponiveis
     global energizados
     global custoAtual
-    # print(vizinhosDisponiveis)
     for i in listaDePrioridades:
-        # print([i.getNome()])
         if((i.getNome() in vizinhosDisponiveis) and (i.getCusto()+custoAtual < beta)):
             energizados, vizinhosDisponiveis = energizar(
                 i, custoAtual, energizados, vizinhosDisponiveis)
             custoAtual = custoAtual + i.getCusto()
-            # break
-
-    # print("Energizados:")
-    # print(energizados)
-    # print("Vizinhos disponiveis:")
-    # print(vizinhosDisponiveis)
-    # print("Custo atual:")
-    # print(custoAtual)
-
-
-solver(prioridades, 70)
+    print("Resultado: " + str(energizados))
+    print("Custo Total:" + str(custoAtual))
