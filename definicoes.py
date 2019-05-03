@@ -46,30 +46,38 @@ class Node:
 def energizar(nodo, custoAtual, estadoAtual, listaDeVizinhosDisponiveis):
     print("Nome do novo nodo:")
     print(nodo.getNome())
-    print("Novo nodo em estados:")
-    print(nodo.getNome() in estadoAtual)
+    # print("Novo nodo em estados:")
+    # print(nodo.getNome() in estadoAtual)
     # print("PRINT NODOS:")
     # print(getNomeVizinhos(estadoAtual))
     if(not(nodo.getNome() in estadoAtual)):
         estadoAtual = estadoAtual + [(nodo.getNome())]
         custoAtual = nodo.getCusto() + custoAtual
-        print("Lista Vizinhos anterior:")
-        print(listaDeVizinhosDisponiveis)
+        # print("Lista Vizinhos anterior:")
+        # print(listaDeVizinhosDisponiveis)
 
         listaDeNovosVizinhos = nodo.getNomeVizinhos()
         for i in listaDeNovosVizinhos:
-            if(not(i in listaDeVizinhosDisponiveis)):
+            if(not(i in listaDeVizinhosDisponiveis) and not(i in estadoAtual)):
                 listaDeVizinhosDisponiveis = listaDeVizinhosDisponiveis + [i]
 
-        print("Lista Vizinhos atual:")
-        print(listaDeVizinhosDisponiveis)
+        for i in listaDeVizinhosDisponiveis:
+            if(i == nodo.getNome()):
+                # print("i")
+                # print(i)
+                # print("nodo.getNome()")
+                # print(nodo.getNome())
+                listaDeVizinhosDisponiveis.remove(nodo.getNome())
 
-        print("Custo atual:")
-        print(custoAtual)
-        print("Estados:")
-        print(estadoAtual)
+        # print("Lista Vizinhos atual:")
+        # print(listaDeVizinhosDisponiveis)
 
-    return estadoAtual
+        # print("Custo atual:")
+        # print(custoAtual)
+        # print("Estados:")
+        # print(estadoAtual)
+
+    return estadoAtual, listaDeVizinhosDisponiveis
 
 
 NodoA = Node("A", 5)
@@ -117,5 +125,5 @@ prioridades = [NodoA, NodoC, NodoG, NodoL,
                NodoO, NodoP, NodoF, NodoB, NodoM, NodoN]
 custoAtual = 0
 custoMaximo = 70
-vizinhosDisponiveis = []
+vizinhosDisponiveis = ['A']
 energizados = []
