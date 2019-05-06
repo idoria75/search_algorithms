@@ -20,8 +20,11 @@ def depth_search(lista, resultado, custo, meta):
         if(meta in lista):
             return True
         else:
-            print(i.getVizinhos())
+            print("Nodo: "+i.getNome())
+            print("Vizinhos: "+str(i.getNomeVizinhos()))
+            print(energizar(i, custo, lista, i.getVizinhos())[1])
     return False
+
     # global resultadoBusca, custoBusca, energizados
     # print(lista)
     # print(energizados)
@@ -43,6 +46,4 @@ def depth_search(lista, resultado, custo, meta):
     # return resultado, custo
 
 
-print(NodoG)
-print(NodoG.getNome())
-print(depth_search(vizinhosDisponiveis, resultadoBusca, custoBusca, NodoA))
+print(depth_search(vizinhosDisponiveis, resultadoBusca, custoBusca, NodoB))

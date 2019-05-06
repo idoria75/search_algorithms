@@ -27,6 +27,13 @@ class Node:
             nomes = nomes+[i.getNome()]
         return nomes
 
+# Funcao para energizar um do sistema
+# Parametros:
+#   Nodo: Nodo do sistema a ser energizado
+#   custoAtual: Custo energético atual do sistema
+#   estadoAtual: Lista de strings com os estados atualmente ligados
+#   listaDeVizinhosDisponiveis: Lista de strings com o nome dos vizinhos disponiveis
+
 
 def energizar(nodo, custoAtual, estadoAtual, listaDeVizinhosDisponiveis):
     if(not(nodo.getNome() in estadoAtual)):
