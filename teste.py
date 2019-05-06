@@ -1,12 +1,17 @@
-listaOriginal = ["A", "B", "C", "T", "D", "E", "F", "T"]
+import time
+
+startb = time.time()
+listaOriginal = ["A", "B", "C", "T", "D", "E", 2, "T"]
 resultadoOriginal = []
 custoOriginal = 0
 resultadoFinal = []
 custoFinal = 0
 
+# Para quando acha meta igual a um elemento da lista
+
 
 def recursao(lista, resultado, custo, meta):
-    global resultadoFinal, custoFinal
+    #global resultadoFinal, custoFinal
     if(lista != []):
         if(lista[0] != meta):
             custo = custo+1
@@ -30,7 +35,13 @@ def recursao(lista, resultado, custo, meta):
     return resultado, custo
 
 
+start = time.time()
+
 resposta, custoResposta = recursao(
-    listaOriginal, resultadoOriginal, custoOriginal, "T")
+    listaOriginal, resultadoOriginal, custoOriginal, 3)
 print(resposta)
 print(custoResposta)
+
+end = time.time()
+print("Tempo de execucao: " + str(end-start) + " segundos")
+print("      Tempo total: " + str(end-startb) + " segundos")
