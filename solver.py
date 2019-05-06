@@ -28,7 +28,7 @@ def depth_search(lista, resultado, custo, meta):
             if(not(i in energizados)):
                 if(i != meta.getNome()):
                     custoAtual = custo+i.getCusto()
-                    listaAtual = i.getVizinhos()
+                    energizados, lista = energizar(i,custoAtual,)
                     resultadoAtual = resultado + [i]
                     resultado, custo = depth_search(
                         listaAtual, resultadoAtual, custoAtual, meta)
@@ -37,6 +37,30 @@ def depth_search(lista, resultado, custo, meta):
                         custoBusca = custo
                         print("Resultado Final: " + str(resultadoBusca))
     return resultado, custo
+
+
+# def solver(listaDePrioridades, beta):  # , vizinhosDisponiveis):
+#     global vizinhosDisponiveis
+#     global energizados
+#     global custoAtual
+#     for i in listaDePrioridades:
+#         if((i.getNome() in vizinhosDisponiveis) and (i.getCusto()+custoAtual < beta)):
+#             energizados, vizinhosDisponiveis = energizar(
+#                 i, custoAtual, energizados, vizinhosDisponiveis)
+#             custoAtual = custoAtual + i.getCusto()
+#         elif (not(i.getNome in vizinhosDisponiveis) and (i.getCusto()+custoAtual < beta)):
+#             # (*) Tentar ligar um nodo vizinho
+#             # Deste vizinho, tentar ligar outro
+#                 # Se nao tiver outro vizinho, para e volta para (*)
+#                 # Se tiver outro vizinho, repete (*)
+#             for j in vizinhosDisponiveis:
+#                 print(search(energizados, j, i, custoAtual))
+
+#         else:
+#             break
+
+#     print("Resultado: " + str(energizados))
+#     print("Custo Total:" + str(custoAtual))
 
 
 print(NodoG)
