@@ -27,6 +27,20 @@ class Node:
             nomes = nomes+[i.getNome()]
         return nomes
 
+
+def prettyPrintNodos(lista):
+    temp = []
+    for i in lista:
+        temp = temp+[i.getNome()]
+    print(temp)
+
+
+def getNameListaNodos(lista):
+    temp = []
+    for i in lista:
+        temp = temp+[i.getNome()]
+    return temp
+
 # Funcao para energizar um do sistema
 # Parametros:
 #   Nodo: Nodo do sistema a ser energizado
@@ -36,17 +50,20 @@ class Node:
 
 
 def energizar(nodo, custoAtual, estadoAtual, listaDeVizinhosDisponiveis):
-    if(not(nodo.getNome() in estadoAtual)):
-        estadoAtual = estadoAtual + [(nodo.getNome())]
+    if(not(nodo in estadoAtual)):
+        estadoAtual = estadoAtual + [nodo]
         custoAtual = nodo.getCusto() + custoAtual
-        listaDeNovosVizinhos = nodo.getNomeVizinhos()
+        listaDeNovosVizinhos = nodo.getVizinhos()
         for i in listaDeNovosVizinhos:
             if(not(i in listaDeVizinhosDisponiveis) and not(i in estadoAtual)):
                 listaDeVizinhosDisponiveis = listaDeVizinhosDisponiveis + [i]
         for i in listaDeVizinhosDisponiveis:
             if(i == nodo.getNome()):
-                listaDeVizinhosDisponiveis.remove(nodo.getNome())
-    return estadoAtual, listaDeVizinhosDisponiveis
+                listaDeVizinhosDisponiveis.remove(nodo)
+    prettyPrintNodos(estadoAtual)
+    prettyPrintNodos(listaDeVizinhosDisponiveis)
+    print(custoAtual)
+    return estadoAtual, listaDeVizinhosDisponiveis, custoAtual
 
 
 # Configura Nodos

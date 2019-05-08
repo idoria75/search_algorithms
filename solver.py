@@ -32,25 +32,5 @@ def depth_search(lista, resultado, custo, meta):
             print(energizar(i, custo, lista, i.getVizinhos())[1])
     return False
 
-    # global resultadoBusca, custoBusca, energizados
-    # print(lista)
-    # print(energizados)
-    # if(lista == []):
-    #     return [], 0
-    # else:
-    #     for i in lista:
-    #         if(not(i in energizados)):
-    #             if(i != meta.getNome()):
-    #                 custoAtual = custo+i.getCusto()
-    #                 energizados, lista = energizar(i, custoAtual,)
-    #                 resultadoAtual = resultado + [i]
-    #                 resultado, custo = depth_search(
-    #                     listaAtual, resultadoAtual, custoAtual, meta)
-    #                 if(meta.getNome() in resultado):
-    #                     resultadoBusca = resultado
-    #                     custoBusca = custo
-    #                     print("Resultado Final: " + str(resultadoBusca))
-    # return resultado, custo
 
-
-print(depth_search(vizinhosDisponiveis, resultadoBusca, custoBusca, NodoB))
+# print(depth_search(vizinhosDisponiveis, resultadoBusca, custoBusca, NodoB))
