@@ -42,6 +42,13 @@ def energizar(nodo, custoAtual, estadoAtual, listaDeVizinhosDisponiveis):
     return estadoAtual, listaDeVizinhosDisponiveis
 
 
+def prettyPrintNodos(lista):
+    temp = []
+    for i in lista:
+        temp = temp+[i.getNome()]
+    return temp
+
+
 # Configura Nodos
 NodoA = Node("A", 5)
 NodoC = Node("C", 10)

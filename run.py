@@ -1,3 +1,10 @@
 from solver import *
+import time
 
-solver(prioridades, 70)
+beta = 95
+print("Prioridade: "+str(prettyPrintNodos(prioridades))+", Custo: "+str(beta))
+
+start = time.time()
+solver(prioridades, beta)
+end = time.time()
+print("Tempo de execucao: "+str(end-start)+"s")
