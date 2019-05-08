@@ -14,23 +14,25 @@ custoBusca = 0
 # Meta: Nodo meta
 # Lista deve ser lista de strings e nao de nodos para funcionar
 
+# Funcao atual esta verificando se o nodo meta esta no parametro lista.
+# Queremos que ele verifique se esta em um dos vizinhos dos nodos da lista
 
-def depth_search(lista, resultado, custo, meta):
-    print("Lista:" + str(lista))
-    print(lista[0].getNome())
-    print("Resultado:" + str(resultado))
+
+def solver_depth_search(lista, resultado, custo, meta):
+    print("Lista:" + str(getNameListaNodos(lista)))
+    print("Resultado:" + str(getNameListaNodos(resultado)))
     print("Custo:" + str(custo))
     print("Meta:" + str(meta))
     for i in lista:
         print(i.getNome())
-        # if i.getNome() == meta.getNome():
         if(meta in lista):
             return True
         else:
-            print("Nodo: "+i.getNome())
-            print("Vizinhos: "+str(i.getNomeVizinhos()))
-            print(energizar(i, custo, lista, i.getVizinhos())[1])
+            print("Meta nao encontrada")
+            #print("Nodo: "+i.getNome())
+            #print("Vizinhos: "+str(i.getNomeVizinhos()))
+            #print(energizar(i, custo, lista, i.getVizinhos())[1])
     return False
 
 
-# print(depth_search(vizinhosDisponiveis, resultadoBusca, custoBusca, NodoB))
+print(solver_depth_search(vizinhosDisponiveis, resultadoBusca, custoBusca, NodoA))
