@@ -45,15 +45,21 @@ def solver_depth_search(lista, resultado, custo, meta):
                 return True
             else:
                 print("Meta nao esta nos vizinhos")
-
                 if(normalizaLista(lista) == normalizaLista(lista+i.getVizinhos())):
                     return False
                 # Caso lista de vizinhos mude ao dar um passo
                 else:
                     print("Passo: "+i.getNome())
-                    novaLista = normalizaLista(lista+i.getVizinhos())
-                    novaLista.remove(i)
-                    return solver_depth_search(novaLista, resultado, custo, meta)
+                    novosVizinhos = subtractLista(lista+i.getVizinhos(), lista)
+                    print("Novos vizinhos: " +
+                          str(getNameListaNodos(novosVizinhos)))
+                    if(i not in resultado):
+                        resultado = resultado+[i]
+                        print("Resultado: ")
+                        prettyPrintNodos(resultado)
+                        return solver_depth_search(novosVizinhos, resultado, custo, meta)
+                    else:
+                        return False
                     # USAR DIFERENCA ENTRE OS VIZINHOS ANTIGOS E NOVOS!!!!!!
 
     return False

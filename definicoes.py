@@ -52,6 +52,13 @@ def getNameListaNodos(lista):
 def normalizaLista(lista):
     return(list(dict.fromkeys(lista)))
 
+# subtractLista: Retorna todos os itens que estao em X e nao em Y
+
+
+def subtractLista(x, y):
+    result = [item for item in x if item not in y]
+    return result
+
 
 def resetFlags(listaNodos):
     for i in listaNodos:
