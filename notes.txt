@@ -27,3 +27,10 @@ SE NODO PRIORITARIO NAO ESTIVER LIGADO:
 # Energizar este nodo e atualizar a situacao atual
 # Colocar uma flag no nodo pra indicar se ele ja esta energizado
 # Usar loop for pra verificar se todos os nodos do caminho antigo e do caminho atual foram energizados
+
+# Usar uma lista que salva todos os que ja foram verificados
+# Essa lista eh atualizada toda vez que se avanca no nodo e eh passada como parametro para a mesma FUNCAO
+# a FUNCAO vai procurar meta nos vizinhos usando como base os ja visitados para nao voltar
+# Comecar com prototipo que marca o que ja foi visitados
+
+# Funcao solver ja deve energizar A de comeco
