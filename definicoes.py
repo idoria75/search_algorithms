@@ -4,6 +4,7 @@ class Node:
         self._nome = nome
         self._custo = custo
         self._vizinhos = []
+        self._flagBusca = False
 
     def print(self):
         print(self._custo)
@@ -26,6 +27,12 @@ class Node:
         for i in self._vizinhos:
             nomes = nomes+[i.getNome()]
         return nomes
+
+    def setFlagBusca(self, newState):
+        self._flagBusca = newState
+
+    def getFlagBusca(self):
+        return self._flagBusca
 
 
 def prettyPrintNodos(lista):

@@ -19,20 +19,36 @@ custoBusca = 0
 
 
 def solver_depth_search(lista, resultado, custo, meta):
+    global resultadoBusca
+    global vizinhosDisponiveis
+    global custoBusca
     print("Lista:" + str(getNameListaNodos(lista)))
     print("Resultado:" + str(getNameListaNodos(resultado)))
     print("Custo:" + str(custo))
     print("Meta:" + str(meta))
     for i in lista:
-        print(i.getNome())
+        print("Nome: "+i.getNome())
         if(meta in lista):
+            print("Nodo esta na lista")
+            resultadoBusca, vizinhosDisponiveis, custoBusca = energizar(
+                i, custoBusca, resultadoBusca, lista+i.getVizinhos())
             return True
         else:
             print("Meta nao encontrada")
-            #print("Nodo: "+i.getNome())
-            #print("Vizinhos: "+str(i.getNomeVizinhos()))
-            #print(energizar(i, custo, lista, i.getVizinhos())[1])
+            if(meta in i.getVizinhos()):
+                print("Resposta eh um vizinho")
+                resultadoBusca, vizinhosDisponiveis, custoBusca = energizar(
+                    i, custoBusca, resultadoBusca, lista+i.getVizinhos())
+                resultadoBusca, vizinhosDisponiveis, custoBusca = energizar(
+                    meta, custoBusca, resultadoBusca, lista+i.getVizinhos())
+                return True
+            else:
+                print("Meta nao esta nos vizinhos")
+
     return False
 
 
-print(solver_depth_search(vizinhosDisponiveis, resultadoBusca, custoBusca, NodoA))
+print(solver_depth_search(vizinhosDisponiveis, resultadoBusca, custoBusca, NodoC))
+print("Resultado busca: ")
+prettyPrintNodos(resultadoBusca)
+print(custoBusca)
