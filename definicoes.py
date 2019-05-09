@@ -48,6 +48,15 @@ def getNameListaNodos(lista):
         temp = temp+[i.getNome()]
     return temp
 
+
+def normalizaLista(lista):
+    return(list(dict.fromkeys(lista)))
+
+
+def resetFlags(listaNodos):
+    for i in listaNodos:
+        i.setFlagBusca(False)
+
 # Funcao para energizar um do sistema
 # Parametros:
 #   Nodo: Nodo do sistema a ser energizado
