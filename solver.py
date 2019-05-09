@@ -68,7 +68,7 @@ def solve_priority_problem(listaDePrioridades, betaMaximo, listaDeVizinhos):
                     # No caso do nodo ja ser vizinho
                     print("Nodo ja eh vizinho")
                     nodosLigados, nodosDisponiveis, betaAcumulado = energizar(
-                        nodo, betaAcumulado, nodosLigados, listaDeVizinhos)
+                        nodo, betaAcumulado, nodosLigados, nodosDisponiveis)
                     print("Nova lista de prioridades:")
                     prioridadesAtualizada = subtractLista(
                         prioridadesAtualizada, nodosLigados)
@@ -84,8 +84,11 @@ def solve_priority_problem(listaDePrioridades, betaMaximo, listaDeVizinhos):
                     if(min(listaDeCustos) + nodo.getCusto() < betaMaximo - betaAcumulado):
                         print("Eh possivel ligar nodo "+str(nodo.getNome()))
                         for aux in range(len(listaDeRespostas)):
-                            prettyPrintNodos(listaDeRespostas[aux])
+                            print(listaDeRespostas[aux])
                         print(listaDeCustos)
+                        print(min(listaDeCustos))
+                        print(
+                            listaDeRespostas[listaDeCustos.index(min(listaDeCustos))])
                 del listaDeRespostas[:]
                 del listaDeCustos[:]
         if(betaAcumulado == betaIteracao):
