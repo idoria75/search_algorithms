@@ -35,6 +35,16 @@ class Node:
         return self._flagBusca
 
 
+class Resposta:
+    def __init__(self, listaCaminhos=[], listaCustos=[]):
+        self._listaCaminhos = listaCaminhos
+        self._listaCustos = listaCustos
+
+    def appendResposta(self, caminho, custo):
+        self._listaCaminhos = self._listaCaminhos+caminho
+        self._listaCustos = self._listaCustos+[custo]
+
+
 def prettyPrintNodos(lista):
     temp = []
     for i in lista:
@@ -106,31 +116,17 @@ NodoA.appendVizinho(NodoB)
 NodoA.appendVizinho(NodoC)
 
 NodoB.appendVizinho(NodoP)
-NodoB.appendVizinho(NodoA)
 NodoB.appendVizinho(NodoG)
 
-NodoP.appendVizinho(NodoB)
-
-NodoC.appendVizinho(NodoA)
 NodoC.appendVizinho(NodoO)
 NodoC.appendVizinho(NodoF)
 
-NodoO.appendVizinho(NodoC)
 NodoO.appendVizinho(NodoG)
 
-NodoG.appendVizinho(NodoB)
 NodoG.appendVizinho(NodoN)
 NodoG.appendVizinho(NodoL)
-NodoG.appendVizinho(NodoO)
 
-NodoF.appendVizinho(NodoC)
 NodoF.appendVizinho(NodoM)
-
-NodoN.appendVizinho(NodoG)
-
-NodoL.appendVizinho(NodoG)
-
-NodoM.appendVizinho(NodoF)
 
 prioridades = [NodoA, NodoC, NodoG, NodoL,
                NodoO, NodoP, NodoF, NodoB, NodoM, NodoN]

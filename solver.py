@@ -1,71 +1,69 @@
 from definicoes import *
 
-custoAtual = 0
-custoMaximo = 70
-vizinhosDisponiveis = [NodoA]
-energizados = []
+betaMaximo = 50
+metaFinal = NodoF
+vizinhos = [NodoA]
 
-resultadoBusca = []
-custoBusca = 0
+caminhoBusca = []
 
-# Lista: Lista dos vizinhos disponiveis
-# Resultado: Variavel que ira guardar o caminho ate o nodo
-# Custo: Variavel que ira guardar custo ate o nodo
-# Meta: Nodo meta
-# Lista deve ser lista de strings e nao de nodos para funcionar
+listaDeRespostas = []
+listaDeCustos = []
 
-# Funcao atual esta verificando se o nodo meta esta no parametro lista.
-# Queremos que ele verifique se esta em um dos vizinhos dos nodos da lista
+# Retorna caminho para ligar nodo e custo para atingir nodo
 
 
-def solver_depth_search(lista, resultado, custo, meta):
-    global resultadoBusca
-    global vizinhosDisponiveis
-    global custoBusca
-    print("Lista:" + str(getNameListaNodos(lista)))
-    # print("Resultado:" + str(getNameListaNodos(resultado)))
-    # print("Custo:" + str(custo))
-    print("Meta:" + meta.getNome())
-    for i in lista:
-        print("Nome: "+i.getNome())
-        if(meta in lista):
-            print("Nodo esta na lista")
-            resultadoBusca, vizinhosDisponiveis, custoBusca = energizar(
-                i, custoBusca, resultadoBusca, lista+i.getVizinhos())
-            return True
+def depthSearch(meta, caminho, betaDisponivel, vizinhosDisponiveis):
+    # print(vizinhosDisponiveis)
+    global caminhoBusca, listaDeRespostas, listaDeCustos
+    for i in vizinhosDisponiveis:
+        # print("Nome: "+i.getNome())
+        # if(betaDisponivel - i.getCusto() >= 0):
+        if(i == meta):
+            print("Meta atingida")
+            prettyPrintNodos(caminho)
+            listaDeRespostas = listaDeRespostas + [caminho]
+            custo = 0
+            for i in caminho:
+                custo = custo+i.getCusto()
+            listaDeCustos = listaDeCustos + [custo]
+            caminhoBusca = caminho
         else:
-            print("Meta nao encontrada")
-            if(meta in i.getVizinhos()):
-                print("Resposta eh um vizinho")
-                # Energiza pai e filho
-                resultadoBusca, vizinhosDisponiveis, custoBusca = energizar(
-                    i, custoBusca, resultadoBusca, lista+i.getVizinhos())
-                resultadoBusca, vizinhosDisponiveis, custoBusca = energizar(
-                    meta, custoBusca, resultadoBusca, lista+i.getVizinhos())
-                return True
-            else:
-                print("Meta nao esta nos vizinhos")
-                if(normalizaLista(lista) == normalizaLista(lista+i.getVizinhos())):
-                    return False
-                # Caso lista de vizinhos mude ao dar um passo
-                else:
-                    print("Passo: "+i.getNome())
-                    novosVizinhos = subtractLista(lista+i.getVizinhos(), lista)
-                    print("Novos vizinhos: " +
-                          str(getNameListaNodos(novosVizinhos)))
-                    if(i not in resultado):
-                        resultado = resultado+[i]
-                        print("Resultado: ")
-                        prettyPrintNodos(resultado)
-                        return solver_depth_search(novosVizinhos, resultado, custo, meta)
-                    else:
-                        return False
-                    # USAR DIFERENCA ENTRE OS VIZINHOS ANTIGOS E NOVOS!!!!!!
-
-    return False
+            if(i.getVizinhos() != []):
+                novoEstadoVizinhos = i.getVizinhos()
+                #print("Novos vizinhos: ")
+                # prettyPrintNodos(novoEstadoVizinhos)
+                novoBeta = betaDisponivel - i.getCusto()
+                novoCaminho = caminho+[i]
+                # print("Caminho: ")
+                # prettyPrintNodos(caminho)
+                # print("Novo Beta: ", novoBeta)
+                depthSearch(meta, novoCaminho, novoBeta, novoEstadoVizinhos)
+        # else:
+        # return False
 
 
-print(solver_depth_search(vizinhosDisponiveis, resultadoBusca, custoBusca, NodoM))
-print("Resultado busca: ")
-prettyPrintNodos(resultadoBusca)
-print(custoBusca)
+# def solver(listaDePrioridades, beta):  # , vizinhosDisponiveis):
+#     global vizinhosDisponiveis, energizados, custoAtual, flag
+#     temp_flag = 0
+#     while(flag != True):
+#         temp_flag = 0
+#         for i in listaDePrioridades:
+#             if((i.getNome() in vizinhosDisponiveis) and (i.getCusto()+custoAtual < beta) and temp_flag == 0):
+#                 energizados, vizinhosDisponiveis = energizar(
+#                     i, custoAtual, energizados, vizinhosDisponiveis)
+#                 custoAtual = custoAtual + i.getCusto()
+#                 temp_flag = 1
+#             if(i.getNome() == 'N' and temp_flag == 0):
+#                 flag = True
+#     print("Resultado: " + str(energizados))
+#     print("Custo Total:" + str(custoAtual))
+
+print("Resolvendo o problema: Atingir meta "+metaFinal.getNome()+" com Beta = " +
+      str(betaMaximo)+" e partindo da lista de vizinhos: "+str(getNameListaNodos(vizinhos)))
+depthSearch(metaFinal, [], betaMaximo, vizinhos)
+print("Caminho Busca: ")
+prettyPrintNodos(caminhoBusca)
+print("Lista de respostas: ")
+for i in listaDeRespostas:
+    prettyPrintNodos(i)
+print(listaDeCustos)
