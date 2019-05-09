@@ -83,6 +83,7 @@ def resetFlags(listaNodos):
 
 
 def energizar(nodo, custoAtual, estadoAtual, listaDeVizinhosDisponiveis):
+    print("Energizar -> Estado atual: "+str(estadoAtual))
     if(not(nodo in estadoAtual)):
         estadoAtual = estadoAtual + [nodo]
         custoAtual = nodo.getCusto() + custoAtual
@@ -93,9 +94,14 @@ def energizar(nodo, custoAtual, estadoAtual, listaDeVizinhosDisponiveis):
         for i in listaDeVizinhosDisponiveis:
             if(i == nodo.getNome()):
                 listaDeVizinhosDisponiveis.remove(nodo)
-    prettyPrintNodos(estadoAtual)
-    prettyPrintNodos(listaDeVizinhosDisponiveis)
-    print(custoAtual)
+    # prettyPrintNodos(estadoAtual)
+    # prettyPrintNodos(listaDeVizinhosDisponiveis)
+    # print(custoAtual)
+    # print(listaDeVizinhosDisponiveis)
+    # print(nodo)
+    if(nodo in listaDeVizinhosDisponiveis):
+        # print("True")
+        listaDeVizinhosDisponiveis.remove(nodo)
     return estadoAtual, listaDeVizinhosDisponiveis, custoAtual
 
 
@@ -127,6 +133,3 @@ NodoG.appendVizinho(NodoN)
 NodoG.appendVizinho(NodoL)
 
 NodoF.appendVizinho(NodoM)
-
-prioridades = [NodoA, NodoC, NodoG, NodoL,
-               NodoO, NodoP, NodoF, NodoB, NodoM, NodoN]
