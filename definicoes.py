@@ -86,7 +86,7 @@ def energizar(nodo, custoAtual, estadoAtual, listaDeVizinhosDisponiveis):
 
     print("Energizar -> Estado atual: ")
     prettyPrintNodos(estadoAtual)
-    prettyPrintNodos(listaDeVizinhosDisponiveis)
+    # prettyPrintNodos(listaDeVizinhosDisponiveis)
     if(not(nodo in estadoAtual)):
         estadoAtual = estadoAtual + [nodo]
         custoAtual = nodo.getCusto() + custoAtual
