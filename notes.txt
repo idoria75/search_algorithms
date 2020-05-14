@@ -7,4 +7,30 @@ Implementar algoritmo de busca em profundidade
 
 ########
 
-Como percorrer a lista de prioridades verificando se é possível energizar o próximo da lista
+Como percorrer a lista de prioridades verificando se é possível energizar o próximo da lista?
+
+Não estamos salvando os estados ligados nem os vizinhos!
+
+LÓGICA:
+SE NODO PRIORITARIO NAO ESTIVER LIGADO:
+1. VERIFICAR SE EH POSSIVEL LIGAR (CUSTO_ATUAL + CUSTO_NODO < CUSTO_MAX E SE ESTA NA LISTA DE VIZINHOS POSSIVEIS)
+    1.A. ADICIONAR NODO A LISTA DOS LIGADOS (FAZER FUNCAO PARA PRINTAR NOME DOS NODOS COM BASE NA LISTA DE NODOS RECEBIDA)
+    1.B. REMOVER DA LISTA DE PRIORIDADES
+    1.C. SOMAR CUSTO
+    1.D. ADICIONAR NODOS VIZINHOS A LISTA DE VIZINHOS POSSIVEIS
+2. SE NÃO FOR POSSIVEL LIGAR:
+    2.A. PASSAR PARA PROXIMO DA LISTA DE PRIORIDADES
+
+
+# Salvar solucao atual
+# Varrer lista de nodos ate achar um nodo que atenda a solucao
+# Energizar este nodo e atualizar a situacao atual
+# Colocar uma flag no nodo pra indicar se ele ja esta energizado
+# Usar loop for pra verificar se todos os nodos do caminho antigo e do caminho atual foram energizados
+
+# Usar uma lista que salva todos os que ja foram verificados
+# Essa lista eh atualizada toda vez que se avanca no nodo e eh passada como parametro para a mesma FUNCAO
+# a FUNCAO vai procurar meta nos vizinhos usando como base os ja visitados para nao voltar
+# Comecar com prototipo que marca o que ja foi visitados
+
+# Funcao solver ja deve energizar A de comeco

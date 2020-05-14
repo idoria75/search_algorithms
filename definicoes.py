@@ -4,6 +4,7 @@ class Node:
         self._nome = nome
         self._custo = custo
         self._vizinhos = []
+        self._flagBusca = False
 
     def print(self):
         print(self._custo)
@@ -18,30 +19,95 @@ class Node:
     def getNome(self):
         return self._nome
 
+    def getVizinhos(self):
+        return self._vizinhos
 
-# prioridades = ["A", "C", "G", "L", "O", "P", "F", "B", "M", "N"]
-# custoAtual = 0
-# Adiciona nome do nodo quando a linha for energizada
-# estados = []
+    def getNomeVizinhos(self):
+        nomes = []
+        for i in self._vizinhos:
+            nomes = nomes+[i.getNome()]
+        return nomes
 
-# Energiza o nodo se não energizado antes
+    def setFlagBusca(self, newState):
+        self._flagBusca = newState
 
-
-def energizar(nodo):
-    global custoAtual, estados
-    print("Nome do novo nodo:")
-    print(nodo.getNome())
-    print("Novo nodo em estados:")
-    print(nodo.getNome() in estados)
-    if(not(nodo.getNome() in estados)):
-        estados = estados + [(nodo.getNome())]
-        custoAtual = nodo._custo + custoAtual
-    print("Custo atual:")
-    print(custoAtual)
-    print("Estados:")
-    print(estados)
+    def getFlagBusca(self):
+        return self._flagBusca
 
 
+class Resposta:
+    def __init__(self, listaCaminhos=[], listaCustos=[]):
+        self._listaCaminhos = listaCaminhos
+        self._listaCustos = listaCustos
+
+    def appendResposta(self, caminho, custo):
+        self._listaCaminhos = self._listaCaminhos+caminho
+        self._listaCustos = self._listaCustos+[custo]
+
+
+def prettyPrintNodos(lista):
+    temp = []
+    for i in lista:
+        temp = temp+[i.getNome()]
+    print(temp)
+
+
+def getNameListaNodos(lista):
+    temp = []
+    for i in lista:
+        temp = temp+[i.getNome()]
+    return temp
+
+
+def normalizaLista(lista):
+    return(list(dict.fromkeys(lista)))
+
+# subtractLista: Retorna todos os itens que estao em X e nao em Y
+
+
+def subtractLista(x, y):
+    result = [item for item in x if item not in y]
+    return result
+
+
+def resetFlags(listaNodos):
+    for i in listaNodos:
+        i.setFlagBusca(False)
+
+# Funcao para energizar um do sistema
+# Parametros:
+#   Nodo: Nodo do sistema a ser energizado
+#   custoAtual: Custo energético atual do sistema
+#   estadoAtual: Lista de strings com os estados atualmente ligados
+#   listaDeVizinhosDisponiveis: Lista de strings com o nome dos vizinhos disponiveis
+
+
+def energizar(nodo, custoAtual, estadoAtual, listaDeVizinhosDisponiveis):
+
+    print("Energizar -> Estado atual: ")
+    prettyPrintNodos(estadoAtual)
+    # prettyPrintNodos(listaDeVizinhosDisponiveis)
+    if(not(nodo in estadoAtual)):
+        estadoAtual = estadoAtual + [nodo]
+        custoAtual = nodo.getCusto() + custoAtual
+        listaDeNovosVizinhos = nodo.getVizinhos()
+        for i in listaDeNovosVizinhos:
+            if(not(i in listaDeVizinhosDisponiveis) and not(i in estadoAtual)):
+                listaDeVizinhosDisponiveis = listaDeVizinhosDisponiveis + [i]
+        for i in listaDeVizinhosDisponiveis:
+            if(i == nodo.getNome()):
+                listaDeVizinhosDisponiveis.remove(nodo)
+    # prettyPrintNodos(estadoAtual)
+    # prettyPrintNodos(listaDeVizinhosDisponiveis)
+    # print(custoAtual)
+    # print(listaDeVizinhosDisponiveis)
+    # print(nodo)
+    listaDeNovosVizinhos = subtractLista(
+        listaDeVizinhosDisponiveis, [nodo])
+    return estadoAtual, listaDeNovosVizinhos, custoAtual
+
+
+# Configura Nodos
 NodoA = Node("A", 5)
 NodoC = Node("C", 10)
 NodoG = Node("G", 20)
@@ -53,53 +119,19 @@ NodoB = Node("B", 5)
 NodoM = Node("M", 13)
 NodoN = Node("N", 13)
 
+# Adiciona vizinhos
 NodoA.appendVizinho(NodoB)
 NodoA.appendVizinho(NodoC)
 
 NodoB.appendVizinho(NodoP)
-NodoB.appendVizinho(NodoA)
 NodoB.appendVizinho(NodoG)
 
-NodoP.appendVizinho(NodoB)
-
-NodoC.appendVizinho(NodoA)
 NodoC.appendVizinho(NodoO)
 NodoC.appendVizinho(NodoF)
 
-NodoO.appendVizinho(NodoC)
 NodoO.appendVizinho(NodoG)
 
-NodoG.appendVizinho(NodoB)
 NodoG.appendVizinho(NodoN)
 NodoG.appendVizinho(NodoL)
-NodoG.appendVizinho(NodoO)
 
-NodoF.appendVizinho(NodoC)
 NodoF.appendVizinho(NodoM)
-
-NodoN.appendVizinho(NodoG)
-
-NodoL.appendVizinho(NodoG)
-
-NodoM.appendVizinho(NodoF)
-
-# print("NodoA:")
-# NodoA.print()
-# print("NodoB:")
-# NodoB.print()
-# print("NodoC:")
-# NodoC.print()
-# print("NodoP:")
-# NodoP.print()
-# print("NodoG:")
-# NodoG.print()
-# print("NodoO:")
-# NodoO.print()
-# print("NodoN:")
-# NodoN.print()
-# print("NodoM:")
-# NodoM.print()
-# print("NodoL:")
-# NodoL.print()
-# print("NodoF:")
-# NodoF.print()
