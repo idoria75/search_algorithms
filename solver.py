@@ -106,53 +106,6 @@ def solve_priority_problem(listaDePrioridades, betaMaximo, listaDeVizinhos):
         print(str(betaAcumulado)+"/"+str(betaMaximo))
     return
 
-    # for nodo in nodosDisponiveis:
-    #     print(nodo.getNome())
-    #     # print(betaMaximo)
-    #     # print(betaAcumulado)
-    #     # print(betaMaximo - betaAcumulado)
-    #     if(betaMaximo - betaAcumulado > listaDePrioridades[0].getCusto()):
-    #         print(nodo.getNome())
-
-    # depthSearch(listaDePrioridades[cont], [],
-    #             betaMaximo-betaAcumulado, listaDeVizinhos)
-
-    # print("Caminho Busca: ")
-    # prettyPrintNodos(caminhoBusca)
-    # print("Respostas: ")
-    # for i in listaDeRespostas:
-    #     prettyPrintNodos(i)
-    # print(listaDeCustos)
-    # del listaDeRespostas[:]
-    # del listaDeCustos[:]
-    # cont = cont+1
-
-    # depthSearch(listaDePrioridades[cont], [],
-    #             betaMaximo-betaAcumulado, listaDeVizinhos)
-    # print("Caminho Busca: ")
-    # prettyPrintNodos(caminhoBusca)
-    # print("Respostas: ")
-    # for j in listaDeRespostas:
-    #     prettyPrintNodos(j)
-    # print(listaDeCustos)
-    # print(betaAcumulado)
-    # del listaDeRespostas[:]
-    # del listaDeCustos[:]
-
-    # cont = 7
-    # depthSearch(listaDePrioridades[cont], [],
-    #             betaMaximo-betaAcumulado, listaDeVizinhos)
-    # print("Caminho Busca: ")
-    # prettyPrintNodos(caminhoBusca)
-    # print("Respostas: ")
-    # for k in listaDeRespostas:
-    #     prettyPrintNodos(k)
-    # print(listaDeCustos)
-    # print(betaAcumulado)
-    # del listaDeRespostas[:]
-    # del listaDeCustos[:]
-
-
 prioridades = [NodoA, NodoC, NodoG, NodoL,
                NodoO, NodoP, NodoF, NodoB, NodoM, NodoN]
 prioridadesSemA = [NodoA, NodoC, NodoG, NodoL,
@@ -161,13 +114,3 @@ beta = 90
 vizinhos = [NodoA]
 
 print(solve_priority_problem(prioridades, beta, vizinhos))
-
-# print("-.-.-.-.-.-.-.-.-.-.-.-.-.-.-..-.-.-.-..")
-
-# depthSearch(NodoM, [], beta, vizinhos)
-# print("Caminho Busca: ")
-# prettyPrintNodos(caminhoBusca)
-# print("Respostas: ")
-# for i in listaDeRespostas:
-#     prettyPrintNodos(i)
-# print(listaDeCustos)
